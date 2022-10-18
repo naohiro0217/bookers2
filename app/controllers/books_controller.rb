@@ -13,6 +13,8 @@ class BooksController < ApplicationController
    redirect_to books_path
   end
   
+   
+  
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -20,7 +22,7 @@ class BooksController < ApplicationController
       redirect_to books_path
     else
      @books = Book.all
-     render :_list
+     render :index
     end
   end
 

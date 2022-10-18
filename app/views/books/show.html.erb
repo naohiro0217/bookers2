@@ -1,8 +1,4 @@
 <div>
-  <%= flash[:notice] %>
-<div>
-
-<div>
 　<p>本のタイトル：<%= @book.title %></p>
   <p>感想：<%= @book.body %></p>
   <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image(100,100) %></p>

@@ -1,0 +1,16 @@
+<div class="cover-user-index">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>ユーザー一覧</h1>
+    </div>
+    <div class="row justify-content-center">
+      <% @users.each do |user| %>
+      <div class="one-post card w-100">
+        <%= link_to user_path(user) do %>
+        <p><%= user.name %></p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

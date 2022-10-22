@@ -1,9 +1,17 @@
+ <% if @book.errors.any? %>
+            <%= @book.errors.count %>errors prohibited this obj from being saved:
+              <ul>
+                <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+                <% end %>
+              </ul>
+  <% end %>
 <div class="container px-5 px-sx-0">
   <div class = "row">
     <div class ="col-md-3">
       <h2>User info</h2>
         <%= image_tag @user.get_profile_image(100,100) %>
-        
+
         <table class = "table" >
           <tbody>
               <tr>
@@ -16,29 +24,26 @@
               </tr>
           </tbody>
         </table>
-          <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-          <h1>NewBook</h1>
-            <% if @book.errors.any? %>
-            <%= @book.errors.count %>errors prohibited this obj from being saved:
-              <ul>
-              <% @book.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-              </ul>
-              <% end %>
-              
+         <div class = "btn btn-outline-secondary btn-block">
+                <%= link_to edit_user_path(@user) do %>
+                    <i class="fas fa-user-cog"></i>
+                <% end %>
+         </div>
+          <h1>New book</h1>
+
+
               <%= form_with model: @book do |f| %>
               <h4>本のタイトル</h4>
               <%= f.text_field :title %>
               <h4>感想</h4>
               <%= f.text_area :body %>
-              <%= f.submit 'create book' %>
+              <%= f.submit 'Create Book', class: "btn btn-sm btn-success" %>
               <% end %>
       </div>
-          
+
       <div class = "col-md-8 offset-md-1">
         <h1>Users</h1>
-          
+
           <table class = "table">
             <thead>
               <th>image</th>
@@ -55,14 +60,14 @@
                 <%= user.name %>
                 </td>
                 <td>
-                <%= link_to "show", user_path(user.id) %>
+                <%= link_to "Show", user_path(user.id) %>
                 </td>
               </tr>
             <% end %>
             </tbody>
           </table>
 
-    </div>   
+    </div>
   </div>
 </div>
 

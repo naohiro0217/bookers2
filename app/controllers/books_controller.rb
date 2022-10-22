@@ -8,13 +8,12 @@ class BooksController < ApplicationController
   end
 
   def update
-   book = Book.find(params[:id])
-   if book.update(book_params)
+   @book = Book.find(params[:id])
+   if @book.update(book_params)
     flash[:notice] = "You have updated book successfully."
-    redirect_to user_path(current_user.id)
+    redirect_to book_path
    else
-     flash[:notice] = "errors prohibited this obj from being saved:"
-     redirect_to edit_book_path
+     render :edit
    end
   end
 
@@ -24,7 +23,7 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to user_path(current_user)
+      redirect_to book_path(@book)
     else
       @user = current_user
       @books = Book.all

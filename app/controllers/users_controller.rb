@@ -8,11 +8,12 @@ class UsersController < ApplicationController
 
 
   def edit
+
     @user = User.find(params[:id])
       if @user == current_user
             render :edit
       else
-            redirect_to user_path(@user.id)
+            redirect_to user_path(current_user.id)
       end
   end
 
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    is_matching_login_user
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
@@ -38,4 +40,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+
+
 end
